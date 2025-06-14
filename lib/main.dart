@@ -5,10 +5,8 @@ import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/features/home/data/repos/home_repo_impl.dart';
 import 'package:bookly/features/presntation/manger/FeaturedBook_cubit/featured_book_cubit.dart';
 import 'package:bookly/features/presntation/manger/newset_Books_cubit/newset_books_cubit.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 
 void main() {
   setupServiceLocator();
@@ -23,7 +21,8 @@ class Bookly extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => FeaturedBooksCubit(getIt.get<HomeRepoImpl>()),
+          create: (context) => FeaturedBooksCubit(getIt.get<HomeRepoImpl>())
+            ..fetchFeaturedBooks(),
         ),
         BlocProvider(
           create: (context) => NewsetBooksCubit(getIt.get<HomeRepoImpl>()),
