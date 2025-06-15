@@ -13,8 +13,7 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<BookModel>>> fetchNewsetBooks() async {
     try {
       var data = await apiService.get(
-          endPoint:
-              'volumes?Filtering=free-ebooks&Sorting=newest &q=subject:Programming');
+          endPoint: 'volumes?q=game&Sorting=newest&Filtering=free-ebooks');
       List<BookModel> books = [];
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
@@ -28,11 +27,12 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
+// https://www.googleapis.com/books/v1/volumes?q=game&Sorting=newest&Filtering=free-ebooks
   @override
   Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
     try {
       var data = await apiService.get(
-          endPoint: 'volumes?Filtering=free-ebooks&q=subject:Programming');
+          endPoint: 'volumes?q=game&Sorting=newest&Filtering=free-ebooks');
       List<BookModel> books = [];
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
