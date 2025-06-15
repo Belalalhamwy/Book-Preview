@@ -28,7 +28,7 @@ class VolumeInfo extends Equatable {
 
   const VolumeInfo({
     this.title,
-    this.authors,
+    required this.authors,
     this.publisher,
     this.publishedDate,
     this.description,
@@ -50,7 +50,9 @@ class VolumeInfo extends Equatable {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
         title: json['title'] as String?,
-        authors: (json['authors'] as List<dynamic>?)?.cast<String>(),
+        authors: (json['authors'] != null
+            ? List<String>.from(json['authors'])
+            : null),
         publisher: json['publisher'] as String?,
         publishedDate: json['publishedDate'] as String?,
         description: json['description'] as String?,
@@ -63,7 +65,9 @@ class VolumeInfo extends Equatable {
                 json['readingModes'] as Map<String, dynamic>),
         pageCount: json['pageCount'] as int?,
         printType: json['printType'] as String?,
-        categories: (json['categories'] as List<String>?)?.cast<String>(),
+        categories: json['categories'] != null
+            ? List<String>.from(json['categories'])
+            : null,
         maturityRating: json['maturityRating'] as String?,
         allowAnonLogging: json['allowAnonLogging'] as bool?,
         contentVersion: json['contentVersion'] as String?,
@@ -95,7 +99,7 @@ class VolumeInfo extends Equatable {
         'allowAnonLogging': allowAnonLogging,
         'contentVersion': contentVersion,
         'panelizationSummary': panelizationSummary?.toJson(),
-        'imageLinks': imageLinks?.toJson(),
+        'imageLinks': imageLinks.toJson(),
         'language': language,
         'previewLink': previewLink,
         'infoLink': infoLink,
