@@ -16,6 +16,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return const Scaffold(
         body: CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
           child: Column(
@@ -30,7 +31,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Text(
-                  "Best Saller",
+                  "Newset Books",
                   style: Styles.textStyle18,
                 ),
               ),
