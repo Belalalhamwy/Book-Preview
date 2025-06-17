@@ -17,11 +17,11 @@ class FeaturedBooksListView extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.25,
             child: ListView.builder(
               itemCount: state.book.length,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomBookImage(
                     imageUrl: state.book[index].volumeInfo.imageLinks.thumbnail,
                   ),
@@ -32,7 +32,7 @@ class FeaturedBooksListView extends StatelessWidget {
         } else if (state is FeaturedBookFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return CustomLoadingIndicator();
+          return const CustomLoadingIndicator();
         }
       },
     );
