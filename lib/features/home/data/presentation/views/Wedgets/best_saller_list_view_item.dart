@@ -51,7 +51,7 @@ class BookListViewItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    bookModel.volumeInfo.authors![0],
+                    bookModel.volumeInfo.authors?[0] ?? 'xxx',
                     style: Styles.textStyle14,
                   ),
                   const SizedBox(height: 3),
@@ -63,7 +63,7 @@ class BookListViewItem extends StatelessWidget {
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       const Spacer(),
-                      BookRating(
+                      const BookRating(
                         rating: 5,
                         count: 250,
                         // rating: bookModel.volumeInfo.averageRating??0,
