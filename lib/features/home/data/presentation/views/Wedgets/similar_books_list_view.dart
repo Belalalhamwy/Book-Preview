@@ -22,13 +22,14 @@ class _SimilarBooksListviewState extends State<SimilarBooksListview> {
             height: MediaQuery.of(context).size.height * 0.15,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              itemCount: state.book.length,
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: CustomBookImage(
-                    imageUrl:
-                        "https://tse2.mm.bing.net/th?id=OIP.QexcnKLol8SaCraOMz2o6AHaFo&pid=Api&P=0&h=220",
-                  ),
+                      imageUrl:
+                          state.book[index].volumeInfo.imageLinks!.thumbnail ??
+                              ""),
                 );
               },
             ),

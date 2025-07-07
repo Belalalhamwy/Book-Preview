@@ -42,7 +42,7 @@ class SlidingText2 extends StatelessWidget {
       builder: (context, _) {
         return SlideTransition(
           position: slidingAnimation,
-          child: Image.asset(AssetData.AAA),
+          child: Image.asset(AssetData.BookImage),
         );
       },
     );

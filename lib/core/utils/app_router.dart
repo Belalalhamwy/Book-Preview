@@ -3,9 +3,11 @@ import 'package:bookly/features/home/data/presentation/view_models/book_model/bo
 import 'package:bookly/features/home/data/presentation/views/home_view.dart';
 import 'package:bookly/features/home/data/presentation/views/book_details_view.dart';
 import 'package:bookly/features/home/data/repos/home_repo.dart';
+import 'package:bookly/features/presntation/manger/search_Books_cubit/search_books_cubit.dart';
 import 'package:bookly/features/presntation/manger/similar_Books_cubit/similar_books_cubit.dart';
 import 'package:bookly/features/presntation/view/wedget/splash_view.dart';
 import 'package:bookly/features/search/presntition/views/search_view.dart';
+import 'package:bookly/features/search/presntition/views/widgets/custom_search_text_filed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +16,7 @@ abstract class AppRouter {
   static String KHomeView = '/homeView';
   static String KBookDetailsView = '/bookDetailsView';
   static String KSearchView = '/searchview';
+  // static String KCustomSearchTextField = '/searchview';
   static final GoRouter router = GoRouter(routes: <RouteBase>[
     GoRoute(
       path: '/',
@@ -33,12 +36,12 @@ abstract class AppRouter {
     //     return const BookDetailsview();
     //   },
     // ),
-    GoRoute(
-      path: KSearchView,
-      builder: (BuildContext context, GoRouterState state) {
-        return const SearchView();
-      },
-    ),
+    // GoRoute(
+    //   path: KSearchView,
+    //   builder: (BuildContext context, GoRouterState state) {
+    //     return const SearchView();
+    //   },
+    // ),
     GoRoute(
         path: KBookDetailsView,
         builder: (context, state) => BlocProvider(
@@ -46,5 +49,10 @@ abstract class AppRouter {
             child: BookDetailsview(
               bookModel: state.extra as BookModel,
             ))),
+    GoRoute(
+        path: KSearchView,
+        builder: (context, state) => BlocProvider(
+            create: (context) => SearchBooksCubit(getIt.get<HomeRepo>()),
+            child: const SearchView())),
   ]);
 }
